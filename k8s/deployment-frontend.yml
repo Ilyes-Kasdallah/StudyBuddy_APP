@@ -5,7 +5,7 @@ metadata:
   labels:
     app: studybuddy-frontend
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: studybuddy-frontend
