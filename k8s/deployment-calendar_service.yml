@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: calendar-service
+  labels:
+    app: calendar-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: calendar-service
+  template:
+    metadata:
+      labels:
+        app: calendar-service
+    spec:
+      containers:
+        - name: calendar-service
+          image: ilyes111/calendar-service:latest
+          ports:
+            - containerPort: 8084

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: studybuddy-frontend
+  labels:
+    app: studybuddy-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: studybuddy-frontend
+  template:
+    metadata:
+      labels:
+        app: studybuddy-frontend
+    spec:
+      containers:
+        - name: studybuddy-frontend
+          image: ilyes111/studybudyy-frontend:latest
+          ports:
+            - containerPort: 8086
