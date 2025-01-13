@@ -12,5 +12,8 @@ COPY package.json /app/
 # Step 4: Install dependencies
 RUN npm install
 
-# Step 5: Specify the command to run the application
-CMD ["npm", "start"]
+# Step 5: Expose the development server port
+EXPOSE 5173
+
+# Step 6: Specify the command to run the application
+CMD ["npm", "run", "dev"]
