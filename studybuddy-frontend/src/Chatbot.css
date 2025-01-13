@@ -1,0 +1,141 @@
+/* Chatbot toggle button */
+.chatbot-toggle-btn {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  background-color: #3b82f6; /* Blue */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 12px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease;
+}
+
+.chatbot-toggle-btn:hover {
+  background-color: #2563eb; /* Darker blue */
+}
+
+/* Chatbot panel container */
+.chatbot-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 320px;
+  height: 100%;
+  background-color: #ffffff; /* White background */
+  box-shadow: -2px 0px 8px rgba(0, 0, 0, 0.1);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  border-left: 3px solid #3b82f6; /* Blue border to make it stand out */
+}
+
+/* Open state for the panel */
+.chatbot-panel.open {
+  transform: translateX(0);
+}
+
+/* Chatbot header */
+.chatbot-header {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb; /* Light gray border */
+  background-color: #f3f4f6; /* Light gray background for header */
+}
+
+.chatbot-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #374151; /* Dark gray */
+}
+
+.chatbot-close-btn {
+  background: none;
+  border: none;
+  color: #6b7280; /* Gray */
+  cursor: pointer;
+  padding: 4px;
+}
+
+.chatbot-close-btn:hover {
+  color: #374151; /* Darker gray */
+}
+
+/* Chatbot body */
+.chatbot-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #f9fafb; /* Light gray background */
+}
+
+/* Styling for individual messages */
+.chatbot-message {
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-size: 15px;
+  max-width: 80%;
+  word-wrap: break-word;
+  color: #000000; /* Black text color for better visibility */
+}
+
+/* Bot messages */
+.bot-message {
+  background-color: #eff6ff; /* Light blue */
+  align-self: flex-start;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for bot messages */
+}
+
+/* User messages */
+.user-message {
+  background-color: #e5e7eb; /* Light gray */
+  align-self: flex-end;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for user messages */
+}
+
+/* Chatbot input */
+.chatbot-input {
+  padding: 16px;
+  border-top: 1px solid #e5e7eb; /* Light gray border */
+  background-color: #f9fafb; /* Light gray background for input area */
+}
+
+.chatbot-text-input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #d1d5db; /* Light gray border */
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+}
+
+.chatbot-text-input:focus {
+  border-color: #3b82f6; /* Blue */
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2); /* Blue outline */
+}
+
+/* Button for sending messages */
+.chatbot-send-btn {
+  background-color: #3b82f6; /* Blue */
+  color: white;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.chatbot-send-btn:hover {
+  background-color: #2563eb; /* Darker blue on hover */
+}

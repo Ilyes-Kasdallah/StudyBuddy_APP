@@ -1,0 +1,45 @@
+/* Navbar custom styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1.25rem; /* Reduced padding for a more compact navbar */
+  background-color: #ffffff; /* White background for cleaner look */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0.75rem; /* Rounded corners */
+}
+
+.nav-btn {
+  background: #DEE2E6;
+  color: #4b5563; /* Darker gray text for contrast */
+  padding: 8px 16px;
+  border: 2px solid transparent;
+  border-radius: 9999px; /* Fully rounded buttons */
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05); /* Subtle background on hover */
+  border-color: #4b5563; /* Dark gray border on hover */
+}
+
+.logout-btn {
+  background-color: #2d3748; 
+  color: white;
+  padding: 8px 16px;
+  border-radius: 9999px; /* Fully rounded button */
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #f43f5e; /* Darker red on hover */
+}
+
+.username-text {
+  font-size: 0.890rem; /* Smaller font size for a cleaner look */
+  font-weight: 900;
+  margin-left: 1rem;
+  color: #2d3748; /* Dark gray text color */
+}
