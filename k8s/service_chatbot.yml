@@ -8,7 +8,7 @@ spec:
   selector:
     app: chatbot-service
   ports:
-    - port: 80           # Port exposed by the service
+    - port: 5001          # Port exposed by the service
       targetPort: 8085   # Port exposed by the container
       nodePort: 30085    # External port for accessing the service
   type: NodePort

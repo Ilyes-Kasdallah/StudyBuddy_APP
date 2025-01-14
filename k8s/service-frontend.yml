@@ -8,7 +8,7 @@ spec:
   selector:
     app: studybuddy-frontend
   ports:
-    - port: 80            # Exposed port of the service
+    - port: 5000            # Exposed port of the service
       targetPort: 5173     # Port on which the app inside the container is running
       nodePort: 30086      # External port for accessing the service
   type: NodePort

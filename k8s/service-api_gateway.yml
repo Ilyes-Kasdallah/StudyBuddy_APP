@@ -8,7 +8,7 @@ spec:
   selector:
     app: api-gateway
   ports:
-    - port: 80           # Port exposed by the service
+    - port: 5003           # Port exposed by the service
       targetPort: 8082   # Port exposed by the container
       nodePort: 30082    # External port for accessing the service
   type: NodePort
