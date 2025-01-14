@@ -18,4 +18,5 @@ spec:
         - name: studybuddy-frontend
           image: ilyes111/studybudyy-frontend:latest
           ports:
-            - containerPort: 8086
+            - containerPort: 8086   # Exposing container port 8086
+          command: ["npm", "run", "dev", "--", "--host", "0.0.0.0"]  # Ensure app binds to 0.0.0.0
