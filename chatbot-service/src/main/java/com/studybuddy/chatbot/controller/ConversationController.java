@@ -1,6 +1,8 @@
 package com.studybuddy.chatbot.controller;
 
 import com.studybuddy.chatbot.dto.ChatRequest;
+import com.studybuddy.chatbot.dto.ChatResponse;
+import com.studybuddy.chatbot.dto.UserEventsResponse;
 import com.studybuddy.chatbot.dto.UserId;
 import com.studybuddy.chatbot.model.Conversation;
 import com.studybuddy.chatbot.service.ConversationService;
@@ -8,6 +10,7 @@ import com.studybuddy.chatbot.service.GeminiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -34,7 +37,7 @@ public class ConversationController {
     }
 
     @PostMapping("/send/{userId}")
-    public ResponseEntity<String> sendMessage(
+    public ResponseEntity<ChatResponse> sendMessage(
             @PathVariable Integer userId,
             @RequestBody ChatRequest req) {
         // Create a message object
@@ -43,9 +46,32 @@ public class ConversationController {
         message.setTimestamp(LocalDateTime.now());
         message.setUserMessage(true);
 
-
+        System.err.println(message);
          //Retrieve user conversation history
         List<Conversation.Message> history = conversationService.getConversationHistory(userId);
+
+        // Fetch user events from the external service
+        RestTemplate restTemplate = new RestTemplate();
+        String url = "http://localhost:5000/api/user-events/" + userId;
+        UserEventsResponse userEvents = restTemplate.getForObject(url, UserEventsResponse.class);
+
+        // Append user events to the conversation history as a message
+        if (userEvents != null && userEvents.getEvents() != null && !userEvents.getEvents().isEmpty()) {
+            StringBuilder eventsText = new StringBuilder("events:\n");
+            for (UserEventsResponse.Event event : userEvents.getEvents()) {
+                eventsText.append(String.format("Title: %s , Start: %s , End: %s\n",
+                        event.getTitle(), event.getStartDate(), event.getEndDate()));
+            }
+
+            System.err.println(eventsText.toString());
+
+            // Create a message for the events and add it to history
+            Conversation.Message eventsMessage = new Conversation.Message();
+            eventsMessage.setText(eventsText.toString());
+            eventsMessage.setTimestamp(LocalDateTime.now());
+            eventsMessage.setUserMessage(false);  // Bot message
+            history.add(eventsMessage);
+        }
          //Add current message to history
         history.add(message);
 
@@ -59,7 +85,7 @@ public class ConversationController {
         // Save user message and bot response in conversation
         conversationService.addMessageToUser(userId, message);
         conversationService.addMessageToUser(userId, new Conversation.Message(botResponse, false));
-
-        return ResponseEntity.ok(botResponse);
+        ChatResponse response =new ChatResponse(botResponse);
+        return ResponseEntity.ok(response);
     }
 }

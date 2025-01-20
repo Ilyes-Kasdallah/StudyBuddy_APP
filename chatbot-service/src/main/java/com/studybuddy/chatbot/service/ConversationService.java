@@ -53,10 +53,38 @@ public class ConversationService {
 
 
     public List<Conversation.Message> getConversationHistory(Integer userId) {
-        Conversation conversation = conversationRepository.findByUserId(userId).orElse(null);
-        return conversationRepository.findByUserId(userId)
-                .map(Conversation::getMessages)
-                .orElse(List.of());
+        Optional<Conversation> existingConversation = conversationRepository.findByUserId(userId);
+
+        if (existingConversation.isPresent()) {
+            // Return the existing conversation if found
+            return existingConversation.get().getMessages();
+        }
+
+        // Create a new conversation if none exists
+        Conversation newConversation = new Conversation();
+        String generalContext = """
+                When responding to user questions, use context from the ongoing conversation, including events with their titles, start dates, and end dates.
+                Address queries clearly and accurately, referencing relevant details. If clarification is needed, ask follow-up questions. Keep responses focused and concise, avoiding unnecessary information.
+                Prioritize accuracy and helpfulness. 
+               """;
+//        String generalContext = """
+//        Instructions: Provided is a conversation with timestamps. The user may ask questions that require context from the ongoing conversation.
+//        When a user question is detected, analyze the latest query and answer it using the relevant context provided up to that point.
+//        If the question relates to previously mentioned details (such as calendar events, meeting summaries, etc.), use that context to enhance your response.
+//        If the question is random or does not require any specific context, simply provide a direct and relevant answer.
+//        If answering the question requires additional clarification or missing context, either ask follow-up questions or explicitly mention what is needed to proceed.
+//        Ensure the length of your response is reasonable and relevant to the question at hand—do not overwhelm with unnecessary details.
+//        Your responses should be clear, conversational, precise, and aligned with the most recent data. Always prioritize accuracy and helpfulness, ensuring responses are focused on the context at hand.
+//        You will also be provided with with events with their tiltles , starting dates and ending dates , if the asked about this events answer , else ignore them .
+//    """;
+
+        newConversation.setUserId(userId);
+        Conversation.Message m = new Conversation.Message();
+        m.setText(generalContext);
+        newConversation.addMessage(m);
+
+        conversationRepository.save(newConversation);
+        return  newConversation.getMessages();
     }
 
 

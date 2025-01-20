@@ -1,4 +1,4 @@
-//package com.studybuddy.auth_service.config;
+//package com.studybuddy.chatbot.config;
 //
 //import org.springframework.context.annotation.Configuration;
 //import org.springframework.web.servlet.config.annotation.CorsRegistry;

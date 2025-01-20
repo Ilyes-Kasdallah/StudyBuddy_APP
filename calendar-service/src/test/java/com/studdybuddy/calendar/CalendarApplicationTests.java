@@ -1,10 +1,10 @@
-package com.studybuddy.calendar_service;
+package com.studdybuddy.calendar;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CalendarServiceApplicationTests {
+class CalendarApplicationTests {
 
 	@Test
 	void contextLoads() {
