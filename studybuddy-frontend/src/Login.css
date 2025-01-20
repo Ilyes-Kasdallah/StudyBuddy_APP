@@ -1,0 +1,74 @@
+/* Styling for the Login Component */
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #4e54c8, #8f94fb);
+}
+
+.login-container form {
+    width: 100%;
+    max-width: 400px;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+    font-size: 1.875rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.login-container input[type="text"]:focus,
+.login-container input[type="password"]:focus {
+    outline: none;
+    border-color: #4e54c8;
+    box-shadow: 0 0 3px rgba(78, 84, 200, 0.5);
+}
+
+.login-container button[type="submit"] {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #4e54c8;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-container button[type="submit"]:hover {
+    background-color: #8f94fb;
+}
+
+.login-container p {
+    text-align: center;
+    font-size: 0.875rem;
+    color: #718096;
+}
+
+.login-container a {
+    color: #4e54c8;
+    text-decoration: none;
+}
+
+.login-container a:hover {
+    text-decoration: underline;
+}
